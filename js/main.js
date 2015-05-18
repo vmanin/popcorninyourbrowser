@@ -1,7 +1,8 @@
 var NUMBER_OF_SEARCH_RESULTS = 7;
 
 var Movie = React.createClass({displayName: "Movie",
-    onMovieSelection: function() {
+    onMovieSelection: function(e) {
+        e.preventDefault();
         this.props.onMovieSelection(this.props.movie);
     },
 
@@ -130,6 +131,11 @@ var Screen = React.createClass({displayName: "Screen",
         document.getElementById('video').play();
     },
 
+    onBackButton: function(e) {
+        e.preventDefault();
+        this.props.onBackButton();
+    },
+
     render: function() {
         var progress = 25;
         var progressBarStyle = { width: progress + "%" };
@@ -139,7 +145,7 @@ var Screen = React.createClass({displayName: "Screen",
                 React.createElement("source", {src: this.props.url})
             ), 
             this.state.videoPseudoReady ? "" : React.createElement(ProgressBar, {onCompletion: this.onCompletion}), 
-            React.createElement("a", {href: "#", onClick: this.props.onBackButton}, React.createElement("img", {id: "back", src: "images/home.png", alt: "home"}))
+            React.createElement("a", {href: "#", onClick: this.onBackButton}, React.createElement("img", {id: "back", src: "images/home.png", alt: "home"}))
         )
     }
 });
