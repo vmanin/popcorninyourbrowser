@@ -140,9 +140,18 @@ var Screen = React.createClass({displayName: "Screen",
         var progress = 25;
         var progressBarStyle = { width: progress + "%" };
 
+        var url = 'https://coinado.io/i/' + this.props.infoHash + '/auto';
+        var cacheUrl = 'http://5.101.103.217/cache/' + this.props.infoHash + '/auto';
+        var cache = '';
+        if (movie_cache.indexOf(String(this.props.infoHash)) >= 0) {
+            cache = React.createElement("source", {src: cacheUrl})
+        }
+
+
         return React.createElement("div", {id: "screen"}, 
             React.createElement("video", {id: "video", controls: true}, 
-                React.createElement("source", {src: this.props.url})
+                cache, 
+                React.createElement("source", {src: url})
             ), 
             this.state.videoPseudoReady ? "" : React.createElement(ProgressBar, {onCompletion: this.onCompletion}), 
             React.createElement("a", {href: "#", onClick: this.onBackButton}, React.createElement("img", {id: "back", src: "images/home.png", alt: "home"}))
@@ -167,8 +176,7 @@ var App = React.createClass({displayName: "App",
         if (this.state.movie == null) {
             return React.createElement(MovieSelection, {movies: this.props.movies, onMovieSelection: this.onMovieSelection})
         } else {
-            var url = 'https://coinado.io/i/' + this.state.movie.info_hash + '/auto';
-            return React.createElement(Screen, {url: url, onBackButton: this.onBackButton})
+            return React.createElement(Screen, {infoHash: this.state.movie.info_hash, onBackButton: this.onBackButton})
         }
     }
 });
