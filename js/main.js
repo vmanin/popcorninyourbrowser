@@ -1,5 +1,7 @@
 var NUMBER_OF_SEARCH_RESULTS = 7;
 
+var cacheAvailable = false;
+
 var Movie = React.createClass({displayName: "Movie",
     onMovieSelection: function(e) {
         e.preventDefault();
@@ -142,16 +144,24 @@ var Screen = React.createClass({displayName: "Screen",
 
         var url = 'https://coinado.io/i/' + this.props.infoHash + '/auto';
         var cacheUrl = 'http://5.101.103.217/cache/' + this.props.infoHash + '/auto';
-        var cache = '';
-        if (movie_cache.indexOf(String(this.props.infoHash)) >= 0) {
-            cache = React.createElement("source", {src: cacheUrl})
-        }
+        var inCache = movie_cache.indexOf(String(this.props.infoHash)) >= 0;
 
+        var originalSource = React.createElement("source", {src: url});
+        var cacheSource = React.createElement("source", {src: cacheUrl});
+
+        var sources = [];
+        if (cacheAvailable && inCache) {
+            sources.push(cacheSource);
+        } else if (cacheAvailable && !(inCache))  {
+            sources.push(originalSource);
+            sources.push(cacheSource);
+        } else {
+            sources.push(originalSource);
+        }
 
         return React.createElement("div", {id: "screen"}, 
             React.createElement("video", {id: "video", controls: true}, 
-                cache, 
-                React.createElement("source", {src: url})
+                sources
             ), 
             this.state.videoPseudoReady ? "" : React.createElement(ProgressBar, {onCompletion: this.onCompletion}), 
             React.createElement("a", {href: "#", onClick: this.onBackButton}, React.createElement("img", {id: "back", src: "images/home.png", alt: "home"}))
@@ -181,4 +191,13 @@ var App = React.createClass({displayName: "App",
     }
 });
 
+function checkCacheAvailability() {
+    var img = document.getElementById('footer').appendChild(document.createElement('img'));
+    img.onload = function() {
+        cacheAvailable = true;
+    };
+    img.src = "http://5.101.103.217/cache/availability.png";
+}
+
+checkCacheAvailability();
 React.render(React.createElement(App, {movies: movies}), document.getElementById('content'));
