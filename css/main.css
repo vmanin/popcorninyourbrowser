@@ -139,3 +139,18 @@ html, body {
     display: block;
     margin: auto;
 }
+
+#message {
+    width: 600px;
+    background: #1d1d1d;
+    margin: 0 auto;
+    color: white;
+    font-size: 20px;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+#message a {
+    color: white;
+    font-weight: bold;
+}
