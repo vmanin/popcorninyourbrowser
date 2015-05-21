@@ -1,0 +1,156 @@
+body {
+    background-image: url('../images/curtains.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: cover;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#container {
+    min-height: 100%;
+    position: relative;
+}
+
+#content {
+    padding-top: 50px;
+    padding-bottom: 25px;
+}
+
+
+#footer {
+    width: 100%;
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+
+#footer a {
+    color: white;
+    font-weight: bold;
+}
+
+#footer img {
+    display: none;
+}
+
+#screen {
+    margin: 0 auto;
+    width: 800px;
+    height: 450px;
+}
+
+#video {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+#progress {
+    text-align: center;
+    font-weight: bold;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.progress {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    background: #1d1d1d;
+    position: relative;
+}
+
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+ }
+
+#movie-selection {
+    width: 500px;
+    margin: 0 auto;
+    background: #1d1d1d;
+}
+
+.search {
+    padding: 5px;
+}
+
+.search input {
+    width: 420px;
+}
+
+.search label {
+    color: white;
+    font-weight: bold;
+    float: left;
+    padding-right: 5px;
+}
+
+.results {
+    padding: 0;
+    margin-top: 0;
+}
+
+.results li {
+    list-style: none;
+    background: #1d1d1d;
+    border-top: 1px solid #2f2f2f;
+    padding: 10px;
+}
+
+.results a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.results a img {
+    display: block;
+    float: left;
+    margin-right: 15px;
+}
+
+.results a span {
+    display: block;
+    font-size: 18px;
+}
+
+.results a p {
+    display: block;
+    color: #919191;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+#back {
+    padding-top: 10px;
+    display: block;
+    margin: auto;
+}
+
+#message {
+    width: 600px;
+    background: #1d1d1d;
+    margin: 0 auto;
+    color: white;
+    font-size: 20px;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+#message a {
+    color: white;
+    font-weight: bold;
+}
